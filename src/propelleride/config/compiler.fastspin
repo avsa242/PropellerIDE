@@ -1,0 +1,10 @@
+[General]
+LANGUAGE=spin2
+PATTERN_IN=.spin2
+PATTERN_OUT=.binary
+PATTERN_RET=.binary
+ARG_FLAGS=-2
+ARG_LIBRARY=-L%
+ARG_OUTPUT=-o%
+RE_ERROR="(.*?)\\.spin2\\s*\\(\\s*([0-9]+)\\s*:\\s*([0-9]+)\\s*\\)\\s*:\\s*error\\s*:\\s*(.*)"
+RE_SUCCESS=(Done)

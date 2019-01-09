@@ -1,0 +1,191 @@
+{
+    "name": "Spin2",
+    "extension": [ "spin2" ],
+    "buildsteps": [
+        [ "fastspin" ]
+    ],
+    "includes": true,
+    "syntax": {
+        "case_sensitive": false,
+        "enable_blocks": [
+            true,
+            [
+                "^con\\b",
+                "^var\\b",
+                "^obj\\b",
+                "^pub\\b",
+                "^pri\\b",
+                "^dat\\b"
+            ]
+        ],
+        "string": [
+            "\" \""
+        ],
+        "number": [
+            "(\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?\\b|\\$[0-9a-f][0-9a-f_]*|%%[0-3][0-3_]*|%[0-1][0-1_]*)\\b"
+        ],
+        "function": [
+            "^(pub|pri)[ \t]*[a-zA-Z_]+[a-zA-Z0-9_]*",
+            "\\b[a-zA-Z_]+[a-zA-Z0-9_]*(?=\\()\\b",
+            "\\b[a-zA-Z_]+[a-zA-Z0-9_]*\\.[a-zA-Z_]+[a-zA-Z0-9_]*"
+        ],
+        "comment": [
+            "{{ }}",
+            "{ }",
+            "' $"
+        ],
+        "mode": {
+            "spin":
+            {
+                "keywords":
+                [
+                    "con var obj pub pri dat asm endasm",
+                    "true false posx negx pi rcfast rcslow xinput xtal1 xtal2 xtal3 pll1x pll2x pll4x pll8x pll16x",
+                    "result",
+                    "if else elseif elseifnot ifnot case other repeat from to step until while next quit return abort",
+                    "byte word long bytefill longfill wordfill bytemove wordmove longmove",
+                    "lookup lookupz lookdown lookdownz strsize strcomp",
+                    "string constant float round trunc file",
+                    "locknew lockret lockset lockclr",
+                    "chipver clkmode _clkmode clkfreq _clkfreq clkset _xinfreq _stack _free",
+                    "cnt ctra ctrb dira dirb ina inb outa outb frqa frqb phsa phsb vcfg vscl par spr",
+                    "waitcnt waitpeq waitpne waitvid",
+                    "cogid cognew coginit cogstop reboot"
+                ],
+                "operators":
+                [
+                    "-- ++ ? @ @@ ^^ || |< >| ! : ~~ ~",
+                    "<-  <-=",
+                    "->  ->=",
+                    "<<  <<=",
+                    ">>  >>=",
+                    "->  ->=",
+                    "><  ><=",
+                    "&   &=",
+                    "|   |=",
+                    "^   ^=",
+                    "*   *=",
+                    "**  **=",
+                    "/   /=",
+                    "//  //=",
+                    "+   +=",
+                    "-   -=",
+                    "#>  #>=",
+                    "<#  <#=",
+                    "<   <=",
+                    ">   >=",
+                    "<>  <>=",
+                    "==  ===",
+                    "=<  =<=",
+                    "=>  =>=",
+                    "=   :=",
+                    "\\bnot\\b",
+                    "\\band\\b \\band=\\b",
+                    "\\bor\\b  \\bor=\\b"
+                ]
+            },
+            "pasm": 
+            {
+                "keywords":
+                [
+                    "NOP ROR ROL SHR SHL RCR RCL SAR SAL ADD ADDX ADDS ADDSX SUB SUBX SUBS SUBSX CMP CMPX CMPS CMPSX CMPR CMPM SUBR CMPSUB FGE FLE FGES FLES SUMC SUMNC SUMZ SUMNZ TESTB TESTBN TESTB TESTBN TESTB TESTBN TESTB TESTBN BITL BITH BITC BITNC BITZ BITNZ BITRND BITNOT AND ANDN OR XOR MUXC MUXNC MUXZ MUXNZ MOV NOT ABS NEG NEGC NEGNC NEGZ NEGNZ INCMOD DECMOD ZEROX SIGNX ENCOD ONES TEST TESTN SETNIB GETNIB ROLNIB SETBYTE GETBYTE ROLBYTE SETWORD GETWORD ROLWORD",
+                    "ALTSN ALTGN ALTSB ALTGB ALTSW ALTGW ALTR ALTD ALTS ALTB ALTI",
+                    "SETR SETD SETS DECOD BMASK CRCBIT CRCNIB MUXNITS MUXNIBS MUXQ MOVBYTS MUL MULS SCA SCAS",
+                    "ADDPIX MULPIX BLNPIX MIXPIX",
+                    "ADDCT1 ADDCT2 ADDCT3",
+                    "RQPIN RDPIN",
+                    "RDLUT WRLUT",
+                    "WMLONG RDBYTE RDWORD RDLONG POPA POPB",
+                    "CALLD RESI3 RESI2 RESI1 RESI0 RETI3 RETI2 RETI1 RETI0 CALLPA CALLPB DJZ DJNZ DJF DJNF IJZ IJNZ TJZ TJNZ TJF TJNF TJS TJNS TJV REP",
+                    "JINT JCT1 JCT2 JCT3 JSE1 JSE2 JSE3 JSE4 JPAT JFBW JXMT JXFI JXRO JXRL JATN JQMT JNINT JNCT1 JNCT2 JNCT3 JNSE1 JNSE2 JNSE3 JNSE4 JNPAT JNFBW JNXMT JNXFI JNXRO JNXRL JNATN JNQMT SETPAT",
+                    "WRPIN AKPIN WXPIN WYPIN SETDACS",
+                    "WRBYTE WRWORD WRLONG PUSHA PUSHB",
+                    "RDFAST WRFAST FBLOCK RFBYTE RFWORD RFLONG RFVAR RFVARS WFBYTE WFWORD WFLONG GETPTR",
+                    "XINIT XSTOP XZERO XCONT",
+                    "QMUL QDIV QFRAC QSQRT QROTATE QVECTOR QLOG QEXP GETQX GETQY",
+                    "COGINIT HUBSET COGID COGSTOP LOCKNEW LOCKRET LOCKTRY LOCKREL",
+                    "GETCT GETRND GETRND WAITX",
+                    "SETXFRQ GETXACC",
+                    "SETSE1 SETSE2 SETSE3 SETSE4 POLLINT POLLCT1 POLLCT2 POLLCT3 POLLSE1 POLLSE2 POLLSE3 POLLSE4 POLLPAT POLLFBW POLLXMT POLLXFI POLLXRO POLLXRL POLLATN POLLQMT WAITINT WAITCT1 WAITCT2 WAITCT3 WAITSE1 WAITSE2 WAITSE3 WAITSE4 WAITPAT WAITFBW WAITXMT WAITXFI WAITXRO WAITXRL WAITATN",
+                    "ALLOWI STALLI TRGINT1 TRGINT2 TRGINT3 NIXINT1 NIXINT2 NIXINT3 SETINT1 SETINT2 SETINT3 GETBRK COGBRK BRK",
+                    "SETQ SETQ2 PUSH POP",
+                    "JMP CALL RET CALLA RETA CALLB RETB JMPREL SKIP SKIPF EXECF",
+                    "SETLUTS LUTSOFF LUTSON",
+                    "SETCY SETCI SETCQ SETCFRQ SETCMOD",
+                    "SETPIV SETPIX",
+                    "COGATN",
+                    "TESTP TESTPN TESTP TESTPN TESTP TESTPN TESTP TESTPN DIRL DIRH DIRC DIRNC DIRZ DIRNZ DIRRND DIRNOT OUTL OUTH OUTC OUTNC OUTZ OUTNZ OUTRND OUTNOT FLTL FLTH FLTC FLTNC FLTZ FLTNZ FLTRND FLTNOT DRVL DRVH DRVC DRVNC DRVZ DRVNZ DRVRND DRVNOT",
+                    "SPLITB MERGEB SPLITW MERGEW SEUSSF SEUSSR RGBSQZ RGBEXP XORO32 REV RCZR RCZL WRC WRNC WRZ WRNZ MODCZ MODC MODZ LOC",
+                    "JMP CALL CALLA CALLB CALLD",
+                    "AUGS AUGD",
+                    "ORG ORGH",
+                    " _RET_ IF_NC_AND_NZ IF_NZ_AND_NC IF_A IF_00 IF_NC_AND_Z",
+                    "IF_Z_AND_NC IF_01 IF_NC IF_AE IF_0X IF_C_AND_NZ IF_NZ_AND_C",
+                    "IF_10 IF_NZ IF_NE IF_X0 IF_C_NE_Z IF_Z_NE_C IF_DIFF IF_NC_OR_NZ",
+                    "IF_NZ_OR_NC IF_NOT_11 IF_C_AND_Z IF_Z_AND_C IF_11 IF_C_EQ_Z",
+                    "IF_Z_EQ_C IF_SAME IF_Z IF_E IF_X1 IF_NC_OR_Z IF_Z_OR_NC",
+                    "IF_NOT_10 IF_C IF_B IF_1X IF_C_OR_NZ IF_NZ_OR_C IF_NOT_01",
+                    "IF_C_OR_Z IF_Z_OR_C IF_BE IF_NOT_00"
+                ],
+                "operators":
+                [
+                    "+ - * ** / // #> <# ^^ || ~> < > << >> <- -> >< & | ^ !",
+                    "== <> < > =< => @",
+                    "\\bnot\\b",
+                    "\\band\\b",
+                    "\\bor\\b",
+                    "[ ] ( ) . ,"
+                ]
+            }
+        }
+    },
+    "project":
+    [
+        {
+            "name": "_includes_",
+            "pattern": [
+                {
+                    "regex": "^[ \t]*([a-zA-Z_]+[a-zA-Z0-9_]*)([ \t]*\[[0-9]+\])?[ \t]*:[ \t]*\"(.*?)(\\.spin2)?\".*$",
+                    "capture": [ 3, ".spin2" ]
+                }
+            ]
+        },
+        {
+            "name": "public",
+            "pattern": [
+                {
+                    "regex": "^(PUB)[ \t]+([a-zA-Z_]+[a-zA-Z0-9_]*)[ \t]*(\\(.*\\))?(\\|.*|:.*)?.*$",
+                    "capture": [ 2, " ", 3 ]
+                }
+            ],
+            "icon": ":/icons/block-pub.png",
+            "color": "#0000FF"
+        },
+        {
+            "name": "private",
+            "pattern": [
+                {
+                    "regex": "^(PRI)[ \t]+([a-zA-Z_]+[a-zA-Z0-9_]*)[ \t]*(\\(.*\\))?(\\|.*|:.*)?.*$",
+                    "capture": [ 2, " ", 3 ]
+                }
+            ],
+            "icon": ":/icons/block-pri.png",
+            "color": "#007FFF"
+        },
+        {
+            "name": "constants",
+            "pattern": [
+                {
+                    "regex": "^[ \t]*([a-zA-Z_]+[a-zA-Z0-9_]*)[ \t]*=[ \t]*(.+?)('.*?)?[ \t]*$",
+                    "capture": [ 1 ]
+                },
+                {
+                    "regex": "^[ \t]*#[0-9_]+[ \t]*,(([ \t]*[a-zA-Z_]+[a-zA-Z0-9_]*[ \t]*,[ \t]*)*([ \t]*[a-zA-Z_]+[a-zA-Z0-9_]*[ \t]*)+).*$",
+                    "capture": [ 1 ]
+                }
+            ],
+            "icon": ":/icons/block-con.png",
+            "color": "#7F7F00"
+        }
+    ]
+}

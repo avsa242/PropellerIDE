@@ -3,6 +3,7 @@
     <file>compiler.bstc</file>
     <file>compiler.openspin</file>
     <file>compiler.propbasic</file>
+    <file>compiler.fastspin</file>
 </qresource>
 </RCC>
 
